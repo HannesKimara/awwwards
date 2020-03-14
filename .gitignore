@@ -1,0 +1,12 @@
+# Byte compiled files
+__pycache__/
+*.py[cod]
+
+# File Databases
+db.sqlite3
+
+# Environment Files
+.env
+
+# Editor Files
+.vscode
