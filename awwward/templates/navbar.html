@@ -5,7 +5,15 @@
       </a>
       <a href="#" data-target="mobile-side" class="sidenav-trigger black-text"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down mr-2">
-        <li><span class = "black-text mr-1"><span class="hide-on-med-and-down">ARE YOU A MEMBER?</span> REGISTER / LOGIN</span></li>
+        <li>
+          <span class = "black-text mr-1">
+          {% if request.user.is_authenticated %}
+            <span class="black-text"><a href = "/account" class="aw-link-color">{{request.user.username}}</a></span>
+          {% else %}
+          <a href="/accounts/login" class="aw-link-color">LOGIN</a>
+        </span>
+          {% endif %}
+        </li>
         <li style="background-color: #49c5b6;"><a href = "">SUBMIT YOUR SITE</a></li>
       </ul>
     </div>
