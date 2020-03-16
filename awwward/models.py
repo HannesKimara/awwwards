@@ -32,6 +32,7 @@ class Project(models.Model):
     website_url = models.URLField(max_length=32)
     posted_at = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    total_score = models.FloatField(default=0)
 
     def save_project(self):
         self.save()

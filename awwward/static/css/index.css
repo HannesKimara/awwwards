@@ -1,0 +1,73 @@
+body {
+    background-color: #f4f7f6;
+}
+
+#daysite {
+    height:75vh;
+    background-image: url('http://res.cloudinary.com/dmu1ncyju/image/upload/v1583757528/zublmru0gu3vtevsjiiz.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-size: cover;
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-size: cover;
+}
+.mr-1{
+    margin-right: 1rem;
+}
+
+.ml-1{
+    margin-left: 1rem;
+}
+
+.ml-2{
+    margin-left: 2rem;
+}
+
+.pt-0-5{
+    padding-top: 0.5rem;
+}
+
+.aw-navbar{
+    background-color: #f4f7f6!important;
+    box-shadow: none!important;
+}
+
+.aw-bold-text {
+    font-weight: bold;
+}
+
+.aw-link-color {
+    color: #49c5b6!important;
+}
+
+.aw-progress {
+    height: 80px;
+}
+
+.aw-progress > svg {
+    height: 100%;
+    display: inline-flex;
+}
+
+.flexbox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.rating-circle {
+    margin: 0 0.5rem 0 0.5rem;
+    text-align: center!important;
+}
+
+.aw-curv-btn {
+    border-radius: 2rem;
+}
