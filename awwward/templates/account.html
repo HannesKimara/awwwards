@@ -1,1 +1,39 @@
 {% extends 'base.html' %}
+
+{% block content %}
+<div class="">
+    <a class="right" href="/accounts/logout">Logout</a>
+</div>
+<div class="container center-align">
+    <br><br>
+    <img src="{{user.profile.photo.url}}" class="circle" width="70px" height="70px">
+    <p class="aw-bold-text">{{user.username}}<a href="{{user.profile.website_url}}" class="black-text" target="blank"><i class="material-icons">subdirectory_arrow_right</i></a></p>
+    <p class="black-text">{{user.profile.country}}</p>
+    <p>{{user.profile.bio}}</p>
+</div>
+<hr>
+<br><br>
+<div class="row">
+    <div class="col l1 m1 s12"></div>
+    <div class="col l10 m10 s12">
+        <span class="black-text aw-bold-text">{{user.profile.project_set.all | length}} Projects</span>
+        <br>
+        {% for project in user.profile.project_set.all%}
+            <div class="col l3 m6 s12">
+                <div class="card">
+                    <div class="card-image">
+                      <img src="{{project.backdrop_image}}">
+                    </div>
+                    <div class="card-content">
+                      <p class="aw-bold-text truncate">{{project.title}}</p>
+                      <p class="truncate">{{project.description}}</p>
+                    </div>
+                    <div class="card-action">
+                      <span>BY <a href="#" class="black-text aw-bold-text">{{user.username}}</a></span>
+                    </div>
+                  </div>
+            </div>
+            {% endfor %}
+    </div>
+    <div class="col l1 m1 s12"></div>
+{% endblock %}
