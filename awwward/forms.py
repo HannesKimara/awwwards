@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Profile, Project
+from .models import Profile, Project, Image
 
 
 class ProfileForm(forms.ModelForm):

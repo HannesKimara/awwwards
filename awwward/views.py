@@ -1,13 +1,16 @@
 from django.shortcuts import render, reverse, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from datetime import date
 
-from .models import Profile
+from .models import Profile, Project
 from .forms import ProfileForm, ProjectForm
 
 
 def index(request):
-    return render(request, 'index.html', {'sites': [1, 2, 3, 4, 5, 6, 7, 7, 8, 9,10, 11]})
+    projects = Project.objects.all()
+    top_site = Project.objects.filter(posted_at__date=date.today()).order_by('-total_score').first()
+    return render(request, 'index.html', {'projects': projects, 'top_site': top_site, 'today_date': date.today().strftime('%m %d %Y')})
 
 
 def profile(request, username):

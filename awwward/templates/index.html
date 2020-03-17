@@ -6,16 +6,16 @@
         <div class="row">
             <br /><br />
             <div class="col l6 m6 s12">
-                <span class="aw-bold-text white-text ml-1">Top site of the day</span><span class="white-text ml-1">March 16 2020</span>
+                <span class="aw-bold-text white-text ml-1">Top site of the day</span><span class="white-text ml-1">{{today_date}}</span>
             </div>
         </div>
         <br /><br />
         <div class="row">
-            <h3 class = "white-text aw-bold-text center">Jane Doe - Portfolio</h3>
+            <h3 class = "white-text aw-bold-text center">{{top_site.title}}</h3>
             <p class = "white-text center">BY 
-                <a href="#" class="aw-link-color">JANE DOE</a> FROM 
-                <a href="#" class="aw-bold-text white-text">AUSTRALIA</a> WITH 
-                <span class="aw-bold-text">8.2</span>
+                <a href="/profile/{{top_site.user.username}}" class="aw-link-color">{{top_site.user.username}}</a> FROM 
+                <a href="#" class="aw-bold-text white-text">{{top_site.user.profile.country}}</a> WITH 
+                <span class="aw-bold-text">{{top_site.total_score}}</span>
             </p>
         </div>
         <div class="row">
@@ -41,18 +41,18 @@
     <div class="col l1 m1 s12"></div>
     <div class="col l10 m10 s12">
         <div class="row">
-            {% for i in sites %}
+            {% for project in projects%}
             <div class="col l3 m6 s12">
                 <div class="card">
                     <div class="card-image">
-                      <img src="http://res.cloudinary.com/dmu1ncyju/image/upload/v1583757528/zublmru0gu3vtevsjiiz.jpg">
+                      <img src="{{project.backdrop_image.url}}">
                     </div>
                     <div class="card-content">
-                      <p class="aw-bold-text">Image with stuff</p>
-                      <p class="truncate">I am a very simple card. I am good at containing small bits of information.</p>
+                      <p class="aw-bold-text truncate">{{project.title}}</p>
+                      <p class="truncate">{{project.description}}</p>
                     </div>
                     <div class="card-action">
-                      <span>BY <a href="#" class="black-text aw-bold-text">JANE</a></span>
+                      <span>BY <a href="#" class="black-text aw-bold-text">{{user.username}}</a></span>
                     </div>
                   </div>
             </div>
