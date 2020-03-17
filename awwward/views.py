@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 
 from .models import Profile
-from .forms import ProfileForm
+from .forms import ProfileForm, ProjectForm
 
 
 def index(request):
@@ -46,8 +46,25 @@ def account(request):
         print("No profile found for user")
         return redirect('create_profile')
     else:
-        print("profile found for user")
-        return render(request, 'account.html', {'user':current_user})
+        user_projects = current_user.project_set.all()
+        return render(request, 'account.html', {'user': current_user, 'projects': user_projects})
+
+
+@login_required(login_url='/accounts/login/')
+def new_site(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = ProjectForm(request.POST, request.FILES)
+        if form.is_valid():
+            print("That's a valid form you got there")
+            u_project = form.save(commit=False)
+            u_project.user = current_user
+            u_project.save()
+
+            return redirect("account")
+    else:
+        form = ProjectForm()
+        return render(request, 'new_site.html', {'form': form})
 
 
 def logout_user(request):

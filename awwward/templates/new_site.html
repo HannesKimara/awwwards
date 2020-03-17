@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <br /><br />
+        <div class="col l4 m4 s12"></div>
+        <div class="col l4 m4 s12">
+            <form action = "/site/new" method="POST" enctype='multipart/form-data'>
+            <div class="card">
+                <div class = "card-content">
+                    <h4 class = "center">Post Project</h4>
+                    {% if form.errors %}
+                        {% for key, error in form.errors.items %} 
+                            <div class = "card-panel red white-text">{{error}}</div>
+                        {% endfor %}
+                    {% endif %}
+                    {% csrf_token %}
+                    {{form.title.label}}
+                    {{form.title}}
+                    <label for="desctext">Description</label>
+                    <textarea id="desctext" class="materialize-textarea" name="description" required></textarea>
+                    <div class="file-field input-field">
+                        <div class="btn-small" style="width:30%">
+                          <span>File</span>
+                          <input type="file" name="backdrop_image">
+                        </div>
+                        <div class="file-path-wrapper">
+                          <input class="file-path validate" type="text" placeholder="Upload Backdrop image">
+                        </div>
+                    </div>
+                    {{form.website_url.label}}
+                    {{form.website_url}}
+                    <input type = "submit" value = "submit" class = "btn" style="background-color: #49c5b6;width:100%">
+                    <input type="hidden" name="next" value="{{next}}">
+                </div>
+            </div>
+            </form>
+        </div>
+        <div class="col l4 m4 s12"></div>
+    </div>
+</div>
+<br/><br/>
+{% endblock %}

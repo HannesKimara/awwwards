@@ -12,17 +12,16 @@
     <p>{{user.profile.bio}}</p>
 </div>
 <hr>
-<br><br>
 <div class="row">
     <div class="col l1 m1 s12"></div>
     <div class="col l10 m10 s12">
-        <span class="black-text aw-bold-text">{{user.profile.project_set.all | length}} Projects</span>
-        <br>
-        {% for project in user.profile.project_set.all%}
+        <span class="black-text aw-bold-text">{{projects | length}} Projects</span>
+        <br><br/>
+        {% for project in projects%}
             <div class="col l3 m6 s12">
                 <div class="card">
                     <div class="card-image">
-                      <img src="{{project.backdrop_image}}">
+                      <img src="{{project.backdrop_image.url}}">
                     </div>
                     <div class="card-content">
                       <p class="aw-bold-text truncate">{{project.title}}</p>
