@@ -21,11 +21,11 @@
                       <img src="{{project.backdrop_image.url}}">
                     </div>
                     <div class="card-content">
-                      <p class="aw-bold-text truncate">{{project.title}}</p>
+                      <a class="aw-bold-text truncate" href="/site/{{project.id}}">{{project.title}}</a>
                       <p class="truncate">{{project.description}}</p>
                     </div>
                     <div class="card-action">
-                      <span>BY <a href="/profile/{{project.user.username}}" class="black-text aw-bold-text">{{user.username}}</a></span>
+                      <span>BY <a href="/profile/{{project.user.username}}" class="black-text aw-bold-text">{{project.user.username}}</a></span>
                     </div>
                   </div>
             </div>

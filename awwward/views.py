@@ -79,7 +79,11 @@ def new_site(request):
 
 
 def view_site(request, site_id):
-    return render(request, 'view_site.html')
+    search_site = Project.objects.filter(pk=site_id).first()
+    if search_site is None:
+        raise Http404()
+    
+    return render(request, 'view_site.html', {'site':search_site})
 
 
 def logout_user(request):

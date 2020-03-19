@@ -1,4 +1,45 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div id="daysite" style="background-image: url('{{site.backdrop_image.url}}');">
+    <div class="overlay">
+        <div class="row">
+            <br /><br />
+            
+        </div>
+        <br /><br />
+        <div class="row">
+            <h3 class = "white-text aw-bold-text center">{{site.title}}</h3>
+            <p class = "white-text center">BY 
+                <a href="/profile/{{site.user.username}}" class="aw-link-color">{{site.user.username}}</a> FROM 
+                <a href="#" class="aw-bold-text white-text">{{site.user.profile.country}}</a> WITH 
+                <span class="aw-bold-text">{{site.total_score}}</span>
+            </p>
+        </div>
+        <div class="row">
+            <div class="flexbox">
+            <div class="rating-circle">
+                <div class="aw-progress" id="progress-design"></div>
+                <span class="white-text center">Design</span>
+            </div>
+            <div class="rating-circle">
+                <div class="aw-progress" id="progress-usability"></div>
+                <span class="white-text center">Usability</span>
+            </div>
+            <div class="rating-circle">
+                <div class="aw-progress" id="progress-content"></div>
+                <span class="white-text center">Content</span>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <br />
+    <div class="col l3 m3 s12"></div>
+    <div class="col l6 m6 s12">
+        <p class="center">{{site.description}}</p>
+    </div>
+    <div class="col l3 m3 s12"></div>
+</div>
 {% endblock %}
