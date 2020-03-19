@@ -1,20 +1,29 @@
 from django.shortcuts import render, reverse, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from django.http import Http404
 from datetime import date
 
-from .models import Profile, Project
+from .models import Profile, Project, User
 from .forms import ProfileForm, ProjectForm
 
 
 def index(request):
     projects = Project.objects.all()
     top_site = Project.objects.filter(posted_at__date=date.today()).order_by('-total_score').first()
+    if top_site is None:
+        top_site = Project.objects.order_by('-total_score').first()
     return render(request, 'index.html', {'projects': projects, 'top_site': top_site, 'today_date': date.today().strftime('%m %d %Y')})
 
 
 def profile(request, username):
-    return render(request, 'profile.html')
+    current_user = request.user
+    search_user = User.objects.filter(username=username).first()
+
+    if search_user is None:
+        raise Http404()
+
+    return render(request, 'profile.html', {'search_user': search_user})
 
 
 @login_required(login_url='/accounts/login/')
@@ -68,6 +77,10 @@ def new_site(request):
     else:
         form = ProjectForm()
         return render(request, 'new_site.html', {'form': form})
+
+
+def view_site(request, site_id):
+    return render(request, 'view_site.html')
 
 
 def logout_user(request):

@@ -1,5 +1,5 @@
 <nav>
-    <div class="nav-wrapper aw-navbar z-depth-0">
+    <div class="nav-wrapper aw-navbar z-depth-0 white">
       <a href="/" class="brand-logo black-text center">
             {% include 'vectors/awwwards_logo.svg'%}
       </a>
@@ -21,4 +21,11 @@
   </nav>
   <ul class="sidenav" id="mobile-side">
     <li><a href="/" class="black-text"><i class="material-icons">home</i>Home</a></li>
+    <li>
+      {% if request.user.is_authenticated %}
+        <a href = "/account" class="aw-link-color"><i class="material-icons">account_circle</i>{{request.user.username}}</a>
+      {% else %}
+      <a href="/accounts/login" class="aw-link-color"><i class="material-icons">account_circle</i>LOGIN</a>
+      {% endif %}
+    </li>
   </ul>
