@@ -17,13 +17,12 @@ def index(request):
 
 
 def profile(request, username):
-    current_user = request.user
     search_user = User.objects.filter(username=username).first()
-
+    projects = Project.objects.filter(user=search_user)
     if search_user is None:
         raise Http404()
 
-    return render(request, 'profile.html', {'search_user': search_user})
+    return render(request, 'profile.html', {'user': search_user, 'projects': projects})
 
 
 @login_required(login_url='/accounts/login/')
