@@ -15,7 +15,7 @@
             <p class = "white-text center">BY 
                 <a href="/profile/{{top_site.user.username}}" class="aw-link-color">{{top_site.user.username}}</a> FROM 
                 <a href="#" class="aw-bold-text white-text">{{top_site.user.profile.country}}</a> WITH 
-                <span class="aw-bold-text">{{top_site.total_score}}</span>
+                <span class="aw-bold-text">{{top_site.total_score|floatformat}}</span>
             </p>
         </div>
         <div class="row">
