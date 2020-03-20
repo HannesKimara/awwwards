@@ -9,4 +9,5 @@ urlpatterns = [
     path('accounts/logout', views.logout_user, name="logout"),
     path('site/new', views.new_site, name="new_site"),
     path('site/<str:site_id>', views.view_site, name="view_site"),
+    path('api/projects', views.ProjectView.as_view(), name="api_projects"),
 ]

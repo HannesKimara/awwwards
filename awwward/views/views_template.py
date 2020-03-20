@@ -4,8 +4,8 @@ from django.contrib.auth import logout
 from django.http import Http404
 from datetime import date
 
-from .models import Profile, Project, User
-from .forms import ProfileForm, ProjectForm
+from ..models import Profile, Project, User
+from ..forms import ProfileForm, ProjectForm
 
 
 def index(request):
