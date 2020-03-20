@@ -10,3 +10,10 @@ class ProjectView(APIView):
         all_proj = Project.objects.all()
         serializer = ProjectSerializer(all_proj, many=True)
         return Response(serializer.data)
+
+
+class ProjectSingle(APIView):
+    def get(self, request, project_id):
+        search_project = Project.objects.filter(pk = project_id).first()
+        serializer = ProjectSerializer(search_project)
+        return Response(serializer.data)

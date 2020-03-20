@@ -10,4 +10,5 @@ urlpatterns = [
     path('site/new', views.new_site, name="new_site"),
     path('site/<str:site_id>', views.view_site, name="view_site"),
     path('api/projects', views.ProjectView.as_view(), name="api_projects"),
+    path('api/projects/<int:project_id>', views.ProjectSingle.as_view(), name="single_project"),
 ]
