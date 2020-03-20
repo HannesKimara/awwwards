@@ -10,10 +10,16 @@ from ..forms import ProfileForm, ProjectForm
 
 def index(request):
     projects = Project.objects.all()
-    top_site = Project.objects.filter(posted_at__date=date.today()).order_by('-total_score').first()
+    top_site = Project.objects.filter(
+        posted_at__date=date.today()
+    ).order_by('-total_score').first()
     if top_site is None:
         top_site = Project.objects.order_by('-total_score').first()
-    return render(request, 'index.html', {'projects': projects, 'top_site': top_site, 'today_date': date.today().strftime('%m %d %Y')})
+    return render(request, 'index.html', {
+        'projects': projects,
+        'top_site': top_site,
+        'today_date': date.today().strftime('%m %d %Y')
+        })
 
 
 def profile(request, username):
@@ -22,7 +28,10 @@ def profile(request, username):
     if search_user is None:
         raise Http404()
 
-    return render(request, 'profile.html', {'user': search_user, 'projects': projects})
+    return render(request, 'profile.html', {
+        'user': search_user,
+        'projects': projects
+        })
 
 
 @login_required(login_url='/accounts/login/')
@@ -58,7 +67,10 @@ def account(request):
         return redirect('create_profile')
     else:
         user_projects = current_user.project_set.all()
-        return render(request, 'account.html', {'user': current_user, 'projects': user_projects})
+        return render(request, 'account.html', {
+            'user': current_user,
+            'projects': user_projects
+            })
 
 
 @login_required(login_url='/accounts/login/')
@@ -82,8 +94,8 @@ def view_site(request, site_id):
     search_site = Project.objects.filter(pk=site_id).first()
     if search_site is None:
         raise Http404()
-    
-    return render(request, 'view_site.html', {'site':search_site})
+
+    return render(request, 'view_site.html', {'site': search_site})
 
 
 def logout_user(request):

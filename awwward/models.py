@@ -48,7 +48,7 @@ class Image(models.Model):
     """
     Image within the database are represented by this model
 
-    Args: 
+    Args:
         image : Image from ImageField
         project (Project:models.Model): Relational object Project
 
@@ -69,7 +69,7 @@ class Image(models.Model):
 class Rating(models.Model):
     """
     Project ratings within the database are represented by this model
-    
+
     Args:
         design_score (float) : Design rating in inclusive range 0.0-10.0
         usability_score (float) : Usability rating in inclusive range 0.0-10.0
@@ -80,9 +80,9 @@ class Rating(models.Model):
         user (User:models.Model) : Relational object User
 
     Methods:
-        save_rating : Save object to Database. 
+        save_rating : Save object to Database.
                         Refer to help(save_rating)
-        delete_rating : Delete object from Database. 
+        delete_rating : Delete object from Database.
                         Refer to help(delete_rating)
     """
     design_score = models.FloatField()

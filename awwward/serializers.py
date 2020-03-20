@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from .models import Project
 
+
 class ProjectSerializer(serializers.ModelSerializer):
     backdrop_image_url = serializers.SerializerMethodField('get_image_url')
 
