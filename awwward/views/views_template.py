@@ -3,9 +3,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.http import Http404
 from datetime import date
+from statistics import mean
 
-from ..models import Profile, Project, User
-from ..forms import ProfileForm, ProjectForm
+from ..models import Profile, Project, User, Rating
+from ..forms import ProfileForm, ProjectForm, RatingForm
 
 
 def index(request):
@@ -97,6 +98,52 @@ def view_site(request, site_id):
 
     return render(request, 'view_site.html', {'site': search_site})
 
+
+@login_required(login_url='/accounts/login/')
+def rate_site(request, project_id):
+    current_user = request.user
+    curr_project = Project.objects.filter(pk=project_id).first()
+
+    if curr_project is None:
+        raise Http404()
+
+    user_site_rating = Rating.objects.filter(
+        project = curr_project,
+        user = current_user
+        ).first()
+
+    if request.method == "POST":
+        if user_site_rating is not None:
+            form = RatingForm(request.POST, instance = user_site_rating)
+            form.save(commit = False)
+            all_ratings = (user_site_rating.design_score, user_site_rating.usability_score, user_site_rating.content_score)
+            user_site_rating.user_total_score = mean(list(all_ratings))
+            user_site_rating.save()
+
+            curr_project.total_design = mean([rating.design_score for rating in Rating.objects.all()])
+            curr_project.total_usability = mean([rating.usability_score for rating in Rating.objects.all()])
+            curr_project.total_content = mean([rating.content_score for rating in Rating.objects.all()])
+            curr_project.total_score = mean((curr_project.total_design, curr_project.total_usability, curr_project.total_content))
+            curr_project.save()
+            
+        else:
+            form = RatingForm(request.POST)
+            u_rating = form.save(commit=False)
+            u_rating.user = current_user
+            u_rating.project = curr_project
+            u_rating.user_total_score = mean(list((
+                u_rating.design_score,
+                u_rating.usability_score,
+                u_rating.content_score
+            )))
+            u_rating.save()
+            curr_project.total_design = mean([rating.design_score for rating in Rating.objects.all()])
+            curr_project.total_usability = mean([rating.usability_score for rating in Rating.objects.all()])
+            curr_project.total_content = mean([rating.content_score for rating in Rating.objects.all()])
+            curr_project.total_score = mean((curr_project.total_design, curr_project.total_usability, curr_project.total_content))
+            curr_project.save()
+
+    return redirect('view_site', curr_project.id)
 
 def logout_user(request):
     if request.user.is_authenticated:

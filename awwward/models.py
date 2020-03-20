@@ -88,7 +88,7 @@ class Rating(models.Model):
     design_score = models.FloatField()
     usability_score = models.FloatField()
     content_score = models.FloatField()
-    project_id = models.ForeignKey(Project, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
     user_total_score = models.FloatField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 

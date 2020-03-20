@@ -32,6 +32,35 @@
             </div>
             </div>
         </div>
+        <div class = "row flexbox">
+        <a class="waves-effect waves-light btn modal-trigger" href="#vote-modal">Vote</a>
+        </div>
+
+  <!-- Modal Structure -->
+  <div id="vote-modal" class="modal">
+    <div class="modal-content">
+        <form action = "/site/vote/{{site.id}}" method="POST">
+            {% csrf_token%}
+            <br />
+            <p class="range-field">
+            <label for="des-score">Design Score</label>
+            <input type="range" id="des-score" min="0" max="10" name="design_score"/>
+            </p>
+            <p class="range-field">
+                <label for="usb-score">Usability Score</label>
+                <input type="range" id="usb-score" min="0" max="10" name="usability_score"/>
+            </p>
+            <p class="range-field">
+                <label for="cont-score">Content Score</label>
+                <input type="range" id="cont-score" min="0" max="10" name="content_score"/>
+            </p>
+            <input type = "submit" value = "vote" class = "btn right" style="background-color: #49c5b6">
+        </form>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat"></a>
+    </div>
+  </div>
     </div>
 </div>
 <div class="row">
