@@ -15,6 +15,9 @@ class ProjectSerializer(serializers.ModelSerializer):
             'description',
             'backdrop_image_url',
             'website_url',
+            'total_design',
+            'total_usability',
+            'total_content',
             'posted_at',
             'total_design',
             'total_content',
@@ -25,5 +28,5 @@ class ProjectSerializer(serializers.ModelSerializer):
     def get_image_url(self, obj):
         return obj.backdrop_image.url
 
-    def get_id(self,obj):
+    def get_id(self, obj):
         return obj.id
